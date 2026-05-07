@@ -1,14 +1,14 @@
-import React from 'react';
-import type { Post } from '../lib/blog';
+import type { PostMetadata } from '../lib/blog';
 
 import { Calendar, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 
 interface ArticleListProps {
-  posts: Post[];
+  posts: PostMetadata[];
   onSelectPost: (slug: string) => void;
 }
+
 
 const ArticleList: React.FC<ArticleListProps> = ({ posts, onSelectPost }) => {
   return (

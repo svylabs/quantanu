@@ -59,8 +59,9 @@ function App() {
           <div className="container">
             <ArticleView 
               post={activePost} 
-              onBack={() => setActivePostSlug(null)} 
+              onBack={() => window.location.hash = ''} 
             />
+
           </div>
         ) : (
           <BlogLayout
