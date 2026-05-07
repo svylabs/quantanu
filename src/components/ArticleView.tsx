@@ -9,6 +9,7 @@ import QubitVisualizer from './interactive/QubitVisualizer';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkGfm from 'remark-gfm';
 
 interface ArticleViewProps {
   post: Post;
@@ -80,7 +81,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
         lineHeight: 1.8 
       }}>
         <ReactMarkdown
-          remarkPlugins={[remarkMath]}
+          remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[rehypeKatex]}
           components={{
             h1: ({ children }) => <h1 style={{ color: 'white', marginTop: '2.5rem', marginBottom: '1.5rem' }}>{children}</h1>,
@@ -130,7 +131,22 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
               }}>
                 {children}
               </blockquote>
-            )
+            ),
+            table: ({ children }) => (
+              <div style={{ overflowX: 'auto', margin: '2rem 0' }}>
+                <table style={{ 
+                  width: '100%', 
+                  borderCollapse: 'collapse', 
+                  border: '1px solid var(--border-color)',
+                  fontSize: '0.9rem'
+                }}>
+                  {children}
+                </table>
+              </div>
+            ),
+            thead: ({ children }) => <thead style={{ background: 'rgba(255,255,255,0.05)' }}>{children}</thead>,
+            th: ({ children }) => <th style={{ padding: '1rem', textAlign: 'left', border: '1px solid var(--border-color)', color: 'white' }}>{children}</th>,
+            td: ({ children }) => <td style={{ padding: '1rem', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>{children}</td>
           }}
         >
           {post.content}

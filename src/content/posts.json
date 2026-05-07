@@ -1,5 +1,12 @@
 [
   {
+    "slug": "hadamard-gate",
+    "title": "The Hadamard Gate: Creating Superposition",
+    "date": "2026-05-10",
+    "tags": ["quantum-gates", "superposition", "fundamentals"],
+    "summary": "An in-depth look at the Hadamard gate, the fundamental tool for creating quantum superposition and enabling true parallel computation."
+  },
+  {
     "slug": "quantum-computing-fundamentals",
     "title": "Quantum Fundamentals: Qubits and the Bloch Sphere",
     "date": "2026-05-08",
