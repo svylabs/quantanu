@@ -1,5 +1,12 @@
 [
   {
+    "slug": "quantum-computing-fundamentals",
+    "title": "Quantum Fundamentals: Qubits and the Bloch Sphere",
+    "date": "2026-05-08",
+    "tags": ["quantum-computing", "qubits", "education"],
+    "summary": "Explaining the core terminology of quantum computing: superposition, entanglement, and how qubits actually work."
+  },
+  {
     "slug": "ecc-quantum-safety",
     "title": "The Quantum Threat to Elliptic Curve Cryptography",
     "date": "2026-05-07",
@@ -9,7 +16,7 @@
   {
     "slug": "hello-world",
     "title": "Welcome to QuantaNu",
-    "date": "2026-05-07",
+    "date": "2026-05-01",
     "tags": ["announcement", "quantum-safe"],
     "summary": "An introduction to the QuantaNu research blog and our mission to secure the future of blockchain."
   }

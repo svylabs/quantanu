@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Zap, AlertTriangle, Clock, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Zap, AlertTriangle, Cpu } from 'lucide-react';
 
 const ECCVisualizer: React.FC = () => {
   const [keySize, setKeySize] = useState(256);

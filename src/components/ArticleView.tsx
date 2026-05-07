@@ -5,6 +5,7 @@ import { Calendar, Tag, ChevronLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import ECCVisualizer from './interactive/ECCVisualizer';
+import QubitVisualizer from './interactive/QubitVisualizer';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -98,6 +99,10 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, onBack }) => {
               
               if (language === 'interactive-ecc') {
                 return <ECCVisualizer />;
+              }
+              
+              if (language === 'interactive-qubit') {
+                return <QubitVisualizer />;
               }
               
               return (
