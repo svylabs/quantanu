@@ -1,14 +1,13 @@
 # Welcome to QuantaNu
 
-This is the first entry in our technical research blog dedicated to quantum-safe blockchain ecosystems.
+This is a personal learning blog where I document my journey into the world of quantum-safe blockchain ecosystems. 
 
+## My Goal
+As quantum computing technology advances, I want to understand how the cryptographic foundations of current blockchains—like Bitcoin's ECDSA and Ethereum's account structure—will need to change. This blog is a way for me to track my research, summarize technical concepts, and share what I learn along the way.
 
-## Our Mission
-As quantum computing technology advances, the cryptographic foundations of current blockchains—like Bitcoin's ECDSA and Ethereum's account structure—face unprecedented risks. Our goal is to provide a daily stream of technical guides, research summaries, and implementation strategies to transition existing ecosystems to a post-quantum world.
+### What I'm Learning
+- **Technical Deep-Dives**: Breaking down complex algorithms like Shor's and Grover's.
+- **Implementation Experiments**: Exploring how to deploy Dilithium or SPHINCS+ based wallets.
+- **Ecosystem Monitoring**: Keeping track of BIPs and EIPs focused on Post-Quantum Cryptography (PQC).
 
-### What to Expect
-- **Daily Deep-Dives**: Technical breakdowns of Shor's and Grover's algorithms.
-- **Implementation Guides**: How to deploy Dilithium or SPHINCS+ based wallets.
-- **Ecosystem Updates**: Monitoring BIPs and EIPs focused on PQC.
-
-Stay tuned. Stay quantum-safe.
+I'll be posting my findings daily as I dive deeper into this landscape.
