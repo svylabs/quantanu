@@ -4,7 +4,8 @@ import BlogLayout from './components/BlogLayout';
 import ArticleList from './components/ArticleList';
 import ArticleView from './components/ArticleView';
 import TagSidebar from './components/TagSidebar';
-import { getPosts, getAllTags, getPostBySlug } from './lib/blog';
+import ArticleSidebar from './components/ArticleSidebar';
+import { getPosts, getAllTags, getPostBySlug, getAdjacentPosts } from './lib/blog';
 
 function App() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -32,6 +33,11 @@ function App() {
     return getPostBySlug(activePostSlug);
   }, [activePostSlug]);
 
+  const adjacentPosts = useMemo(() => {
+    if (!activePostSlug) return { prev: null, next: null };
+    return getAdjacentPosts(activePostSlug);
+  }, [activePostSlug]);
+
   const handleHome = () => {
     window.location.hash = '';
     setSelectedTag(null);
@@ -56,13 +62,23 @@ function App() {
       
       <div style={{ flex: 1, marginTop: '2rem' }}>
         {activePost ? (
-          <div className="container">
+          <BlogLayout
+            sidebar={
+              <ArticleSidebar 
+                posts={posts} 
+                activeSlug={activePostSlug} 
+                onSelectPost={handleSelectPost} 
+              />
+            }
+          >
             <ArticleView 
               post={activePost} 
+              prevPost={adjacentPosts.prev}
+              nextPost={adjacentPosts.next}
               onBack={() => window.location.hash = ''} 
+              onNavigate={handleSelectPost}
             />
-
-          </div>
+          </BlogLayout>
         ) : (
           <BlogLayout
             sidebar={

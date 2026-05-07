@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { Zap, AlertTriangle, Cpu } from 'lucide-react';
 
 const ECCVisualizer: React.FC = () => {

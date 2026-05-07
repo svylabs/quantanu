@@ -38,6 +38,21 @@ export const getPostBySlug = (slug: string): Post | undefined => {
   };
 };
 
+export const getAdjacentPosts = (slug: string): { prev: PostMetadata | null, next: PostMetadata | null } => {
+  const posts = getPosts();
+  const currentIndex = posts.findIndex(p => p.slug === slug);
+  
+  if (currentIndex === -1) return { prev: null, next: null };
+  
+  // getPosts is sorted by date DESC (newest first)
+  // next = newer = index - 1
+  // prev = older = index + 1
+  return {
+    prev: currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null,
+    next: currentIndex > 0 ? posts[currentIndex - 1] : null
+  };
+};
+
 export const getAllTags = (): Record<string, number> => {
   const posts = getPosts();
   const tags: Record<string, number> = {};

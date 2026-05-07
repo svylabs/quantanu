@@ -1,7 +1,7 @@
 import React from 'react';
-import type { Post } from '../lib/blog';
+import type { Post, PostMetadata } from '../lib/blog';
 import ReactMarkdown from 'react-markdown';
-import { Calendar, Tag, ChevronLeft } from 'lucide-react';
+import { Calendar, Tag, ChevronLeft, ArrowLeft, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import ECCVisualizer from './interactive/ECCVisualizer';
@@ -12,10 +12,13 @@ import rehypeKatex from 'rehype-katex';
 
 interface ArticleViewProps {
   post: Post;
+  prevPost: PostMetadata | null;
+  nextPost: PostMetadata | null;
   onBack: () => void;
+  onNavigate: (slug: string) => void;
 }
 
-const ArticleView: React.FC<ArticleViewProps> = ({ post, onBack }) => {
+const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onBack, onNavigate }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -24,8 +27,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, onBack }) => {
       style={{
         padding: '3rem',
         border: '1px solid var(--border-color)',
-        maxWidth: '900px',
-        margin: '0 auto'
+        width: '100%'
       }}
     >
       <button
@@ -133,6 +135,86 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, onBack }) => {
         >
           {post.content}
         </ReactMarkdown>
+      </div>
+
+      <div style={{ 
+        marginTop: '4rem', 
+        paddingTop: '3rem', 
+        borderTop: '1px solid var(--border-color)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '1.5rem'
+      }}>
+        {prevPost ? (
+          <button 
+            onClick={() => onNavigate(prevPost.slug)}
+            className="glass"
+            style={{
+              padding: '1.5rem',
+              textAlign: 'left',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              background: 'rgba(255, 255, 255, 0.02)',
+              border: '1px solid var(--border-color)',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.currentTarget.style.borderColor = 'var(--accent-purple)';
+              e.currentTarget.style.transform = 'translateY(-4px)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
+              e.currentTarget.style.borderColor = 'var(--border-color)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <ArrowLeft size={14} /> Previous Article
+            </div>
+            <h4 style={{ color: 'white', margin: 0, fontSize: '1.1rem', lineHeight: 1.3 }}>{prevPost.title}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+              {prevPost.summary}
+            </p>
+          </button>
+        ) : <div />}
+
+        {nextPost ? (
+          <button 
+            onClick={() => onNavigate(nextPost.slug)}
+            className="glass"
+            style={{
+              padding: '1.5rem',
+              textAlign: 'right',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              gap: '0.75rem',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              background: 'rgba(255, 255, 255, 0.02)',
+              border: '1px solid var(--border-color)',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.currentTarget.style.borderColor = 'var(--accent-cyan)';
+              e.currentTarget.style.transform = 'translateY(-4px)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
+              e.currentTarget.style.borderColor = 'var(--border-color)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Next Article <ArrowRight size={14} />
+            </div>
+            <h4 style={{ color: 'white', margin: 0, fontSize: '1.1rem', lineHeight: 1.3 }}>{nextPost.title}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+              {nextPost.summary}
+            </p>
+          </button>
+        ) : <div />}
       </div>
     </motion.div>
   );
