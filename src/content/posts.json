@@ -1,5 +1,12 @@
 [
   {
+    "slug": "ecc-quantum-safety",
+    "title": "The Quantum Threat to Elliptic Curve Cryptography",
+    "date": "2026-05-07",
+    "tags": ["cryptography", "quantum-threat", "ecc"],
+    "summary": "Why the math behind today's blockchains—ECDSA and Ed25519—is fundamentally vulnerable to quantum computers."
+  },
+  {
     "slug": "hello-world",
     "title": "Welcome to QuantaNu",
     "date": "2026-05-07",
