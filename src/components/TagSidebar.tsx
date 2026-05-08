@@ -80,7 +80,7 @@ const TagSidebar: React.FC<TagSidebarProps> = ({ tags, selectedTag, onSelectTag 
         fontSize: '0.8rem',
         color: 'var(--text-secondary)'
       }}>
-        <p>A personal learning blog documenting the journey into post-quantum cryptography.</p>
+        <p>A personal learning blog documenting developments in quantum foundations, technology and adoption</p>
 
 
       </div>

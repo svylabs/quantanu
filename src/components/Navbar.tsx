@@ -4,17 +4,14 @@ import { Shield } from 'lucide-react';
 
 const Navbar: React.FC<{ onHome: () => void }> = ({ onHome }) => {
   return (
-    <nav className="glass" style={{
-      position: 'sticky',
-      top: '1rem',
-      margin: '0 1rem',
+    <nav style={{
       zIndex: 100,
-      padding: '0.75rem 2rem',
+      padding: '0.5rem 2rem',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginBottom: '2rem',
-      border: '1px solid rgba(6, 182, 212, 0.2)'
+      marginBottom: '0.5rem',
+      background: 'transparent'
     }}>
       <div 
         onClick={onHome}
@@ -39,7 +36,7 @@ const Navbar: React.FC<{ onHome: () => void }> = ({ onHome }) => {
             letterSpacing: '0.2em',
             marginTop: '2px'
           }}>
-            Quantum learning journey
+            Exploring the quantum frontier
           </span>
         </div>
       </div>

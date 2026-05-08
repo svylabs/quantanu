@@ -60,7 +60,7 @@ function App() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar onHome={handleHome} />
       
-      <div style={{ flex: 1, marginTop: '2rem' }}>
+      <div style={{ flex: 1, marginTop: '0' }}>
         {activePost ? (
           <BlogLayout
             sidebar={
@@ -80,25 +80,48 @@ function App() {
             />
           </BlogLayout>
         ) : (
-          <BlogLayout
-            sidebar={
-              <TagSidebar 
-                tags={tags} 
-                selectedTag={selectedTag} 
-                onSelectTag={handleSelectTag} 
-              />
-            }
-          >
-            <div style={{ marginTop: '0.5rem' }}>
-              {/* Content follows directly */}
+          <>
+            <div className="container">
+              <div style={{ 
+                marginBottom: '3rem', 
+                padding: '1.5rem 0', 
+                borderBottom: '1px solid var(--border-color)',
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '1.5rem',
+                color: 'var(--text-secondary)',
+                fontSize: '0.9rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em',
+                fontWeight: 500
+              }}>
+                <span>Physics</span>
+                <span style={{ color: 'var(--accent-cyan)' }}>·</span>
+                <span>Computation</span>
+                <span style={{ color: 'var(--accent-cyan)' }}>·</span>
+                <span>Cryptography</span>
+                <span style={{ color: 'var(--accent-cyan)' }}>·</span>
+                <span>Algorithms</span>
+                <span style={{ color: 'var(--accent-cyan)' }}>·</span>
+                <span>News</span>
+              </div>
             </div>
 
-            
-            <ArticleList 
-              posts={filteredPosts} 
-              onSelectPost={handleSelectPost} 
-            />
-          </BlogLayout>
+            <BlogLayout
+              sidebar={
+                <TagSidebar 
+                  tags={tags} 
+                  selectedTag={selectedTag} 
+                  onSelectTag={handleSelectTag} 
+                />
+              }
+            >
+              <ArticleList 
+                posts={filteredPosts} 
+                onSelectPost={handleSelectPost} 
+              />
+            </BlogLayout>
+          </>
         )}
       </div>
 
