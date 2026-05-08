@@ -122,3 +122,27 @@ h1, h2, h3, .display-font {
   filter: brightness(1.2);
   box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+.toc-sidebar {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .toc-overlay {
+    width: 100% !important;
+  }
+}
+
+.hover-bright {
+  transition: all 0.2s ease;
+}
+
+.hover-bright:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1);
+}
