@@ -24,7 +24,12 @@ interface ArticleViewProps {
 }
 
 const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onBack, onNavigate }) => {
-  const [isTOCOpen, setIsTOCOpen] = React.useState(true);
+  const [isTOCOpen, setIsTOCOpen] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth > 1024;
+    }
+    return true;
+  });
 
   // Extract headings for TOC with hierarchical numbering
   const headings = React.useMemo(() => {
