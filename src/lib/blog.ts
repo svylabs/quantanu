@@ -12,8 +12,8 @@ export interface Post extends PostMetadata {
   content: string;
 }
 
-// Dynamically load all markdown files from the posts directory
-const contentModules = import.meta.glob('../content/posts/*.md', { query: '?raw', eager: true });
+// Dynamically load all markdown files from the posts directory (lazy)
+const contentModules = import.meta.glob('../content/posts/*.md', { query: '?raw' });
 
 export const getPosts = (): PostMetadata[] => {
   return (postsData as PostMetadata[]).sort((a, b) => 
@@ -21,16 +21,19 @@ export const getPosts = (): PostMetadata[] => {
   );
 };
 
-export const getPostBySlug = (slug: string): Post | undefined => {
+export const getPostBySlug = async (slug: string): Promise<Post | undefined> => {
   const metadata = (postsData as PostMetadata[]).find(p => p.slug === slug);
   if (!metadata) return undefined;
   
   // Construct the path and retrieve the raw markdown content
   const path = `../content/posts/${slug}.md`;
-  const module = contentModules[path];
+  const importFn = contentModules[path];
   
-  // Handle both raw string and module object with default export
-  const content = typeof module === 'string' ? module : (module as any)?.default || '';
+  if (!importFn) return undefined;
+  
+  // Await the dynamic import
+  const module = await (importFn as () => Promise<any>)();
+  const content = module?.default || '';
   
   return {
     ...metadata,

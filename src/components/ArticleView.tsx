@@ -372,6 +372,13 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
                     <a
                       key={i}
                       href={`#${h.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(h.id);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
                       style={{
                         fontSize: '0.9rem',
                         color: 'var(--text-secondary)',

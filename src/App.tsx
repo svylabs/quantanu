@@ -1,11 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import BlogLayout from './components/BlogLayout';
 import ArticleList from './components/ArticleList';
 import ArticleView from './components/ArticleView';
 import TagSidebar from './components/TagSidebar';
 import ArticleSidebar from './components/ArticleSidebar';
-import { getPosts, getAllTags, getPostBySlug, getAdjacentPosts } from './lib/blog';
+import { getPosts, getAllTags, getPostBySlug, getAdjacentPosts, type Post } from './lib/blog';
 
 function App() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -28,9 +28,26 @@ function App() {
     return posts.filter(post => post.tags.includes(selectedTag));
   }, [posts, selectedTag]);
 
-  const activePost = useMemo(() => {
-    if (!activePostSlug) return null;
-    return getPostBySlug(activePostSlug);
+  const [activePost, setActivePost] = useState<Post | null>(null);
+  const [isLoadingPost, setIsLoadingPost] = useState(false);
+
+  useEffect(() => {
+    if (!activePostSlug) {
+      setActivePost(null);
+      return;
+    }
+    
+    let isMounted = true;
+    setIsLoadingPost(true);
+    
+    getPostBySlug(activePostSlug).then(post => {
+      if (isMounted) {
+        setActivePost(post || null);
+        setIsLoadingPost(false);
+      }
+    });
+    
+    return () => { isMounted = false; };
   }, [activePostSlug]);
 
   const adjacentPosts = useMemo(() => {
@@ -61,24 +78,30 @@ function App() {
       <Navbar onHome={handleHome} />
       
       <div style={{ flex: 1, marginTop: '0' }}>
-        {activePost ? (
-          <BlogLayout
-            sidebar={
-              <ArticleSidebar 
-                posts={posts} 
-                activeSlug={activePostSlug} 
-                onSelectPost={handleSelectPost} 
+        {activePostSlug ? (
+          isLoadingPost || !activePost ? (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem', color: 'var(--text-secondary)' }}>
+              Loading article...
+            </div>
+          ) : (
+            <BlogLayout
+              sidebar={
+                <ArticleSidebar 
+                  posts={posts} 
+                  activeSlug={activePostSlug} 
+                  onSelectPost={handleSelectPost} 
+                />
+              }
+            >
+              <ArticleView 
+                post={activePost} 
+                prevPost={adjacentPosts.prev}
+                nextPost={adjacentPosts.next}
+                onBack={() => window.location.hash = ''} 
+                onNavigate={handleSelectPost}
               />
-            }
-          >
-            <ArticleView 
-              post={activePost} 
-              prevPost={adjacentPosts.prev}
-              nextPost={adjacentPosts.next}
-              onBack={() => window.location.hash = ''} 
-              onNavigate={handleSelectPost}
-            />
-          </BlogLayout>
+            </BlogLayout>
+          )
         ) : (
           <>
             <div className="container">

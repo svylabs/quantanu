@@ -1,29 +1,36 @@
 [
   {
+    "slug": "bra-ket-notation",
+    "title": "Demystifying Bra-Ket Notation",
+    "date": "2026-05-08",
+    "tags": ["quantum-computing", "physics", "fundamentals"],
+    "summary": "An introduction to Dirac's bra-ket notation, what kets and bras represent, and how to read quantum states."
+  },
+  {
     "slug": "bernstein-vazirani",
     "title": "Bernstein-Vazirani: The Hidden Bitstring Problem",
-    "date": "2026-05-09",
+    "date": "2026-05-06",
     "tags": ["quantum-algorithms", "phase-kickback", "computation"],
     "summary": "Demonstrating quantum speedup by finding a hidden bitstring in one shot using the Bernstein-Vazirani algorithm."
   },
   {
     "slug": "hadamard-gate",
     "title": "The Hadamard Gate: Creating Superposition",
-    "date": "2026-05-10",
+    "date": "2026-05-07",
     "tags": ["quantum-gates", "superposition", "fundamentals"],
     "summary": "An in-depth look at the Hadamard gate, the fundamental tool for creating quantum superposition and enabling true parallel computation."
   },
   {
     "slug": "quantum-computing-fundamentals",
     "title": "Quantum Fundamentals: Qubits and the Bloch Sphere",
-    "date": "2026-05-08",
+    "date": "2026-05-05",
     "tags": ["quantum-computing", "qubits", "education"],
     "summary": "Explaining the core terminology of quantum computing: superposition, entanglement, and how qubits actually work."
   },
   {
     "slug": "ecc-quantum-safety",
     "title": "The Quantum Threat to Elliptic Curve Cryptography",
-    "date": "2026-05-07",
+    "date": "2026-05-04",
     "tags": ["cryptography", "quantum-threat", "ecc"],
     "summary": "Why the math behind today's blockchains—ECDSA and Ed25519—is fundamentally vulnerable to quantum computers."
   },
