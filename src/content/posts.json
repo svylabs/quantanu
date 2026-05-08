@@ -1,5 +1,12 @@
 [
   {
+    "slug": "bernstein-vazirani",
+    "title": "Bernstein-Vazirani: The Hidden Bitstring Problem",
+    "date": "2026-05-09",
+    "tags": ["quantum-algorithms", "phase-kickback", "computation"],
+    "summary": "Demonstrating quantum speedup by finding a hidden bitstring in one shot using the Bernstein-Vazirani algorithm."
+  },
+  {
     "slug": "hadamard-gate",
     "title": "The Hadamard Gate: Creating Superposition",
     "date": "2026-05-10",

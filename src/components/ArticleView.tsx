@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import ECCVisualizer from './interactive/ECCVisualizer';
 import QubitVisualizer from './interactive/QubitVisualizer';
+import BVVisualizer from './interactive/BVVisualizer';
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -106,6 +107,10 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
               
               if (language === 'interactive-qubit') {
                 return <QubitVisualizer />;
+              }
+              
+              if (language === 'interactive-bv') {
+                return <BVVisualizer />;
               }
               
               return (
