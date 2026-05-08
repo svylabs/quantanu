@@ -39,7 +39,7 @@ const Navbar: React.FC<{ onHome: () => void }> = ({ onHome }) => {
             letterSpacing: '0.2em',
             marginTop: '2px'
           }}>
-            Post Quantum Now
+            Quantum learning journey
           </span>
         </div>
       </div>
