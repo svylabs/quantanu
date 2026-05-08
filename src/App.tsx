@@ -105,19 +105,7 @@ function App() {
         ) : (
           <>
             <div className="container">
-              <div style={{ 
-                marginBottom: '3rem', 
-                padding: '1.5rem 0', 
-                borderBottom: '1px solid var(--border-color)',
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '1.5rem',
-                color: 'var(--text-secondary)',
-                fontSize: '0.9rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.2em',
-                fontWeight: 500
-              }}>
+              <div className="category-nav">
                 <span>Physics</span>
                 <span style={{ color: 'var(--accent-cyan)' }}>·</span>
                 <span>Computation</span>

@@ -57,17 +57,11 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
   }, [post.content]);
 
   return (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', position: 'relative' }}>
+    <div className="article-view-layout">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="glass"
-        style={{
-          padding: '3rem',
-          border: '1px solid var(--border-color)',
-          flex: 1,
-          minWidth: 0
-        }}
+        className="glass article-content-box"
       >
         <button
           onClick={onBack}
@@ -197,14 +191,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
           </ReactMarkdown>
         </div>
 
-        <div style={{ 
-          marginTop: '4rem', 
-          paddingTop: '3rem', 
-          borderTop: '1px solid var(--border-color)',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem'
-        }}>
+        <div className="article-nav-grid">
           {prevPost ? (
             <button 
               onClick={() => onNavigate(prevPost.slug)}
@@ -279,15 +266,8 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
       </motion.div>
 
       {/* Table of Contents Overlay */}
-      <div style={{ 
-        position: 'absolute', 
-        top: 0, 
-        right: 0, 
-        bottom: 0, 
-        width: '1px', // Anchor for absolute positioning
-        zIndex: 1000 
-      }}>
-        <div style={{ position: 'sticky', top: '2rem', height: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'flex-start' }}>
+      <div className="toc-container">
+        <div className="toc-sticky">
           {/* Floating TOC Toggle Button (when closed) */}
           <AnimatePresence>
             {!isTOCOpen && headings.length > 0 && (
@@ -296,21 +276,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 onClick={() => setIsTOCOpen(true)}
-                className="glass"
-                style={{
-                  position: 'absolute',
-                  right: '-1.5rem',
-                  width: '3rem',
-                  height: '4rem',
-                  borderRadius: '12px 0 0 12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--accent-cyan)',
-                  border: '1px solid var(--border-color)',
-                  borderRight: 'none',
-                  boxShadow: '-4px 0 15px rgba(0,0,0,0.3)',
-                }}
+                className="glass toc-toggle-btn"
                 whileHover={{ x: -5, backgroundColor: 'rgba(255,255,255,0.05)' }}
               >
                 <ChevronLeft size={24} />
@@ -325,17 +291,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: 20, opacity: 0 }}
-                className="glass"
-                style={{
-                  position: 'absolute',
-                  right: '-1.5rem',
-                  width: '320px',
-                  maxHeight: 'calc(100vh - 4rem)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  border: '1px solid var(--border-color)',
-                  boxShadow: '-10px 10px 30px rgba(0,0,0,0.5)',
-                }}
+                className="glass toc-panel"
               >
                 <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -352,7 +308,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ post, prevPost, nextPost, onB
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}
-                    className="hover-bright"
+                    className="hover-bright toc-close-btn"
                   >
                     <ChevronRight size={20} />
                   </button>

@@ -72,8 +72,8 @@ const ArticleList: React.FC<ArticleListProps> = ({ posts, onSelectPost }) => {
               {post.summary}
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div className="article-list-footer">
+              <div className="article-list-tags">
                 {post.tags.map(tag => (
                   <span key={tag} style={{ 
                     fontSize: '0.7rem', 

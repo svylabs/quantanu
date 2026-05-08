@@ -7,12 +7,7 @@ interface BlogLayoutProps {
 
 const BlogLayout: React.FC<BlogLayoutProps> = ({ children, sidebar }) => {
   return (
-    <div className="container" style={{ 
-      display: 'grid', 
-      gridTemplateColumns: '1fr 300px', 
-      gap: '2.5rem',
-      paddingBottom: '5rem'
-    }}>
+    <div className="container blog-layout">
       <main>
         {children}
       </main>
